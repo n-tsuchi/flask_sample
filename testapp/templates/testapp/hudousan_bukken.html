@@ -1,0 +1,84 @@
+{% extends 'testapp/layout.html' %}
+
+{% block title %}サンプル不動産{% endblock %}
+
+{% block content %}
+    <article>
+    
+    <h2>物件詳細<span class="option1">おすすめ</span></h2>
+    
+    <figure id="item-image" class="mb20 c" style="width: 40%; height: 40%;">
+    <img src="/static/images/sample1.jpg" alt="写真の説明を入れます" id="item_image1">
+    <img src="/static/images/sample1.jpg" alt="写真の説明を入れます" id="item_image2">
+    <p id="imgcaption">詳細画像１の説明文をここに入れます</p>
+    </figure>
+    
+    <p class="c">
+    <img src="/static/images/sample1.jpg" alt="詳細画像１の説明文をここに入れます" class="thumbnail">
+    <img src="/static/images/sample2.jpg" alt="詳細画像２の説明文をここに入れます" class="thumbnail">
+    <img src="/static/images/sample3.jpg" alt="詳細画像３の説明文をここに入れます" class="thumbnail">
+    <img src="/static/images/sample4.jpg" alt="詳細画像４の説明文をここに入れます" class="thumbnail">
+    <img src="/static/images/sample5.jpg" alt="詳細画像５の説明文をここに入れます" class="thumbnail">
+    </p>
+    
+    <table class="ta1">
+    <caption>見出しが必要ならここを使います</caption>
+    <tr>
+    <th>見出し</th>
+    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    </tr>
+    <tr>
+    <th>見出し</th>
+    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    </tr>
+    <tr>
+    <th>見出し</th>
+    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    </tr>
+    <tr>
+    <th>見出し</th>
+    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    </tr>
+    <tr>
+    <th>見出し</th>
+    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    </tr>
+    <tr>
+    <th>見出し</th>
+    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    </tr>
+    </table>
+    
+    <p class="c">※物件問い合わせ用のフォームは、CMS（<a href="https://q19cms.com/files_m/cms_s_fudosan/" target="_blank">通常版</a>｜<a href="https://q19cms.com/files_m/cms_db_fudosan/" target="_blank">高機能版</a>）に備わった機能です。<br>
+    CMSを使わない場合は、通常のお問い合わせ先にリンクを繋げて下さい。</p>
+    <p class="c">
+    <input type="submit" value="この物件に問い合わせをする" class="btn">
+    </p>
+    
+    </article>
+    
+    <p class="mb30"><a href="javascript:history.back()">&lt;&lt; 前のページに戻る</a></p>
+    
+    <section>
+    
+    <h3>イメージチェンジプログラム（imgchg_pack.js）の使い方</h3>
+    <p><strong class="color1">※当プログラムは<a href="https://www.crytus.info/">クリタス</a>様開発のプログラムです。imgchg_pack.jsは改変せずにご利用下さい。</strong></p>
+    <p>■解説</p>
+    <p>サムネイル画像をクリックすると、上の大きな写真が入れ替わります。</p>
+    <p>html側を見れば分かりますが、大きな画像の読みこみ行は<strong>２行</strong>あります。違う点はidの指定名が異なるだけですが必ず２行入れて下さい。この２枚の画像と、サムネイルの１枚目の画像名は合わせておいて下さい。</p>
+    <p>サムネイルを増やしたい場合はhtml側のサムネイルの行をコピペで増やし、画像ファイル名やalt指定（今回の場合は大きな写真下に表示される説明文になります）を入れ替えて下さい。</p>
+    <p><strong>サムネイルと拡大画像は兼用</strong>です。<strong>画像の縦横比率はすべて統一</strong>しておいた方がきれいに入れ替わります。※中央の画像だけ、わざと寸法を変更しています。<br>
+    サムネイルのサイズはcssフォルダのstyle.cssの「.thumbnail」のwidthとheightの値で変更できます。<br>
+    画像は、コンテンツ幅より小さい画像だと表示に問題が出るのでできるだけ<strong>大きな画像</strong>を用意しておいて下さい。<br>
+    imgchg_pack.jsはhtmlの下の方に読み込んでいます。別のページで使う場合はコピーするのを忘れずに。</p>
+    
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <!-- イメージチェンジ設定 -->
+    <script src="/static/js/imgchg_pack.js"></script>
+    <script>
+    imgchg_start('item_image1', 'item_image2', 'thumbnail', 'imgcaption', 0);
+    </script>
+{% endblock %}

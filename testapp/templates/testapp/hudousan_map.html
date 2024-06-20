@@ -1,0 +1,48 @@
+{% extends 'testapp/layout.html' %}
+
+{% block title %}サンプル不動産{% endblock %}
+
+{% block content %}
+<div id="gmap" style="height: 600px; width: 100%;"></div>
+<script>
+    function initMap() {
+        var marker_data = new Array();
+        marker_data.push({ <!-- 島根大学 総合理工学部1号館 -->
+            lat: 35.48519928141999,
+            lng: 133.06845936441746,
+            url: '/hudousan/bukken?id=0',
+        });
+        marker_data.push({ <!-- CIC R&D島根 -->
+            lat: 35.497253085350316,
+            lng: 133.0629437006695,
+            url: '/hudousan/bukken?id=1',
+        });
+        marker_data.push({ <!-- CIC 島根営業所 -->
+            lat: 35.464912213175474,
+            lng: 133.06238383911324,
+            url: '/hudousan/bukken?id=2',
+        });
+
+        <!-- マップの初期設定 -->
+        var map = new google.maps.Map(document.getElementById('gmap'), {
+            zoom: 13.6,
+            center: {lat: marker_data[0].lat, lng: marker_data[0].lng} 
+        });
+
+        <!-- マーカーを配置するループ -->
+        for (i = 0; i < marker_data.length; i++) {
+            var markers = new google.maps.Marker({
+                position: new google.maps.LatLng(marker_data[i].lat, marker_data[i].lng),
+                map: map
+            });
+            <!-- クリックしたら指定したurlに遷移するイベント -->
+            google.maps.event.addListener(markers, 'click', (function(url){
+                return function(){ location.href = url; };
+            })(marker_data[i].url));
+        }
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
+</script>
+{% endblock %}
