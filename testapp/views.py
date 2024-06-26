@@ -13,7 +13,7 @@ def hudousan_map():
     bukken_list = Bukken.query.all()
     print(bukken_list)
 
-    return render_template('testapp/hudousan_map.html', api_key=api_key)
+    return render_template('testapp/hudousan_map.html', api_key=api_key, bukken_list=bukken_list)
 
 # 物件詳細ページ
 @app.route('/hudousan/bukken')

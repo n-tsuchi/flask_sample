@@ -7,21 +7,15 @@
 <script>
     function initMap() {
         var marker_data = new Array();
-        marker_data.push({ <!-- 島根大学 総合理工学部1号館 -->
-            lat: 35.48519928141999,
-            lng: 133.06845936441746,
-            url: '/hudousan/bukken?id=0',
+        {% for bukken in bukken_list %}
+        marker_data.push({
+            name: '{{ bukken.name }}',
+            address: '{{ bukken.address }}',
+            lat: {{ bukken.lat }},
+            lng: {{ bukken.lng }},
+            url: '/hudousan/bukken?id={{ bukken.id }}'
         });
-        marker_data.push({ <!-- CIC R&D島根 -->
-            lat: 35.497253085350316,
-            lng: 133.0629437006695,
-            url: '/hudousan/bukken?id=1',
-        });
-        marker_data.push({ <!-- CIC 島根営業所 -->
-            lat: 35.464912213175474,
-            lng: 133.06238383911324,
-            url: '/hudousan/bukken?id=2',
-        });
+        {% endfor %}
 
         <!-- マップの初期設定 -->
         var map = new google.maps.Map(document.getElementById('gmap'), {
