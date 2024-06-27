@@ -74,7 +74,11 @@
         </nav>
 
         <div id="contents">
-            {% block content %}{% endblock  %}
+            <div class="inner">
+                <section id="top-contents">
+                    {% block content %}{% endblock  %}
+                </section>
+            </div>
         </div><!-- contents-->
 
         <div class="footer">

@@ -5,7 +5,7 @@
 {% block content %}
     <article>
     
-    <h2>物件詳細<span class="option1">おすすめ</span></h2>
+    <h1>{{ bukken_detail.name }}<span class="option1">おすすめ</span></h1>
     
     <figure id="item-image" class="mb20 c" style="width: 40%; height: 40%;">
     <img src="/static/images/sample1.jpg" alt="写真の説明を入れます" id="item_image1">
@@ -22,10 +22,10 @@
     </p>
     
     <table class="ta1">
-    <caption>見出しが必要ならここを使います</caption>
+    <caption>物件情報</caption>
     <tr>
-    <th>見出し</th>
-    <td>ここに説明など入れて下さい。サンプルテキスト。</td>
+    <th>住所</th>
+    <td>{{ bukken_detail.address }}</td>
     </tr>
     <tr>
     <th>見出し</th>
