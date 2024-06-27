@@ -18,8 +18,10 @@ def hudousan_map():
 # 物件詳細ページ
 @app.route('/hudousan/bukken')
 def hudousan_bukken():
-    # URLパラメータ"id"を取得し、物件詳細ページに渡す
-    bukken_id = request.args.get('id')
-    return render_template('testapp/hudousan_bukken.html', bukken_id=bukken_id)
+    # URLパラメータ"id"を取得
+    bukken_id = int(request.args.get('id'))
+    # 取得したidで物件を検索
+    bukken_detail = Bukken.query.get(bukken_id)
+    return render_template('testapp/hudousan_bukken.html', bukken_detail=bukken_detail)
 
     
