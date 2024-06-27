@@ -6,6 +6,7 @@
 <div id="gmap" style="height: 600px; width: 100%;"></div>
 <script>
     function initMap() {
+        <!-- 物件マーカー情報 -->
         var marker_data = new Array();
         {% for bukken in bukken_list %}
         marker_data.push({
@@ -23,17 +24,46 @@
             center: {lat: marker_data[0].lat, lng: marker_data[0].lng} 
         });
 
-        <!-- マーカーを配置するループ -->
-        for (i = 0; i < marker_data.length; i++) {
-            var markers = new google.maps.Marker({
-                position: new google.maps.LatLng(marker_data[i].lat, marker_data[i].lng),
-                map: map
+        //マーカーを格納する配列
+        const marker = [];
+
+        //吹き出し（情報ウィンドウ）を格納する配列
+        const infoWindow = [];
+
+        // マーカーをクリックしたときのイベント登録
+        const markerEvent = (i) => {
+            marker[i].addListener('click', () => {
+                for (const j in marker) {
+                //マーカーをクリックしたときに他の情報ウィンドウを閉じる
+                infoWindow[j].close(map, marker[j]);
+                }
+
+                //クリックされたマーカーの吹き出し（情報ウィンドウ）を表示
+                infoWindow[i].open(map, marker[i]);
             });
-            <!-- クリックしたら指定したurlに遷移するイベント -->
-            google.maps.event.addListener(markers, 'click', (function(url){
-                return function(){ location.href = url; };
-            })(marker_data[i].url));
         }
+        // マーカー毎の処理
+        for (var i = 0; i < marker_data.length; i++) {
+            markerLatLng = new google.maps.LatLng({lat: marker_data[i]['lat'], lng: marker_data[i]['lng']}); // 緯度経度のデータ作成
+            marker[i] = new google.maps.Marker({ // マーカーの追加
+                position: markerLatLng, // マーカーを立てる位置を指定
+                map: map // マーカーを立てる地図を指定
+            });
+
+            infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+                content: '<div class="sample">' + marker_data[i]['name'] + '</div>' +
+                '<a href="' + marker_data[i]['url'] + '">詳細</a>' // 吹き出しに表示する内容
+            });
+
+            markerEvent(i); // マーカーにクリックイベントを追加
+        }
+    }
+
+    // マーカーにクリックイベントを追加
+    function markerEvent(i) {
+        marker[i].addListener('click', function() { // マーカーをクリックしたとき
+            infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+        });
     }
 </script>
 <script async defer
