@@ -1,13 +1,15 @@
 # サンプル不動産
 
 ## セットアップ
-```
-git clone https://github.com/n-tsuchi/flask_sample.git
-cd flask_sample
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
+- 下記コマンドを順に実行
+    ```
+    git clone https://github.com/n-tsuchi/flask_sample.git
+    cd flask_sample
+    python -m venv .venv
+    .\.venv\Scripts\Activate.ps1
+    pip install -r requirements.txt
+    ```
+- 上記コマンド実行後、環境変数(GOOGLE_MAPS_API_KEY_SYS_SOUSEI_2024)にGoogle Maps API Keyを設定
 
 ## サーバ起動
 ```
