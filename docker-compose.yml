@@ -10,3 +10,5 @@ services:
     environment:
       - FLASK_ENV=development
       - GOOGLE_MAPS_API_KEY_SYS_SOUSEI_2024
+    restart:
+      "unless-stopped"
