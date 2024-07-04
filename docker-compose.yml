@@ -1,0 +1,12 @@
+services:
+  mamoru-web:
+    build: .
+    image: mamoru-web-img
+    container_name: mamoru-web
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+      - GOOGLE_MAPS_API_KEY_SYS_SOUSEI_2024

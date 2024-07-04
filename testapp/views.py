@@ -1,8 +1,13 @@
 import os
-from flask import render_template, request
+from flask import render_template, request, redirect
 from testapp import app
 from testapp import db
 from testapp.models import Bukken
+
+# トップページへリダイレクト
+@app.route('/')
+def redirect_top():
+    return redirect('/static/index.html')
 
 # 物件一覧(地図)表示ページ
 @app.route('/hudousan')
