@@ -14,6 +14,7 @@
     ```
 
 ## 起動方法(Dockerの場合)
+- 環境変数(GOOGLE_MAPS_API_KEY_SYS_SOUSEI_2024)にGoogle Maps API Keyを設定
 - 下記コマンドを順に実行
     ```
     git clone https://github.com/n-tsuchi/flask_sample.git
